@@ -1,62 +1,57 @@
 
 
-const getComputerChoice = document.getElementById('computer-choice');
-const getUserChoice = document.getElementById('user-choice');
-const getResult = document.getElementById('result');
+const userChoiceDisplay = document.createElement('h1');
+const copmuterChoiceDisplay = document.createElement('h1');
+const resultDisplay = document.createElement('h1');
 
-const possibleChoices = document.querySelectorAll('button');
+// displays the new elements in the HTML
+const gameSpace = document.getElementById('game');
+gameSpace.append(userChoiceDisplay, copmuterChoiceDisplay, resultDisplay);
+
+const choices = ['rock', 'paper', 'scissors'];
 
 let userChoice;
 let computerChoice;
-let result;
 
-possibleChoices.forEach(possibleChoices => possibleChoices.addEventListener('click', (e) => {
-userChoice = e.target.id
-getUserChoice.innerHTML = userChoice
-generateComputerChoice()
-getResults()
 
-}))
 
-const generateComputerChoice = () => {
-    const randomNumber = Math.floor(Math.random() * possibleChoices.length)
-    console.log(randomNumber)
-
-    if (randomNumber === 0) {
-        computerChoice = 'rock';
-    }
-    if (randomNumber === 1) {
-        computerChoice = 'paper';
-    }
-    if (randomNumber === 2) {
-        computerChoice = 'scissors'
-    }
-
-    getComputerChoice.innerHTML = computerChoice;
+const handleClick = (e) => {
+    userChoice = e.target.id
+    userChoiceDisplay.innerHTML = 'User Choice: ' + userChoice;
+    generateComputerChoice()
+    choiceResult()
 }
 
-const getResults = () => {
-    if (computerChoice === userChoice) {
-        result = 'It is a tie.'
-    }
-    if(computerChoice === 'rock' && userChoice === 'paper') {
-        result = 'You Win!'
-    }
-    if(computerChoice === 'rock' && userChoice === 'scissors') {
-        result = 'You Lose!'
-    }
-    if(computerChoice === 'paper' && userChoice === 'scissors') {
-        result = 'You Win!'
-    }
-    if(computerChoice === 'paper' && userChoice === 'rock') {
-        result = 'You Lose!'
-    }
-    if(computerChoice === 'scissors' && userChoice === 'rock') {
-        result = 'You Win!'
-    }
-    if(computerChoice === 'scissors' && userChoice === 'paper') {
-        result = 'You Lose!'
-    }
+const generateComputerChoice = () => {
+    const randomChoice = choices[Math.floor(Math.random() * choices.length)]
+    computerChoice = randomChoice;
+    copmuterChoiceDisplay.innerHTML = 'Computer Choice: ' + randomChoice;
+}
 
-    getResult.innerHTML = result;
+for (let i = 0; i < choices.length; i++) {
+    const button = document.createElement('button');
+    button.id = choices[i];
+    button.innerHTML = choices[i]
+    button.addEventListener('click', handleClick)
+    gameSpace.appendChild(button)
+}
+
+const choiceResult = () => {
+    switch (userChoice + computerChoice) {
+        case 'scissorspaper':
+        case 'rockscissors':
+        case 'paperrock':
+            resultDisplay.innerHTML = 'You Win!'
+            break
+        case 'paperscissors':
+        case 'scissorsrock':
+        case 'rockpaper':
+            resultDisplay.innerHTML = 'You Lose!'
+            break
+        case 'paperpaper':
+        case 'scissorsscissors':
+        case 'rockpaper':
+            resultDisplay.innerHTML = 'Tie Game'
+            break
+    }
 }
