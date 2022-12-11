@@ -3,7 +3,7 @@
   ## ReadMe Description 
 
   This is a simple rock paper scissors game. The HTML elements are created dynamically when user selects a button they would like to press. After pressing a button, the computer will make a selection and the game will will give you a result on if it was a tie, loss, or you won.  
-  
+
   ## Table of Contents: 
 
   * [Installation](#installation) 
@@ -50,5 +50,6 @@
 
   Email: alexanders.tischner@outlook.com 
 
+![Image Of Application](assets/images/Rock-Paper-Scissors.png)
   
 
