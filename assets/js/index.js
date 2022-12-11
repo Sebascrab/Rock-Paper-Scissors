@@ -1,8 +1,8 @@
 
 
-const userChoiceDisplay = document.createElement('h1');
-const copmuterChoiceDisplay = document.createElement('h1');
-const resultDisplay = document.createElement('h1');
+const userChoiceDisplay = document.createElement('h2');
+const copmuterChoiceDisplay = document.createElement('h2');
+const resultDisplay = document.createElement('h2');
 
 // displays the new elements in the HTML
 const gameSpace = document.getElementById('game');
